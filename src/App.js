@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { WelcomeDialog } from "./composition-vs-inheritence";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // return <FancyBorder children={<div>hello world</div>} />;
+  // return (
+  //   <FancyBorder>
+  //     <div>hello world</div>
+  //     <h1>this is doubled children</h1>
+  //   </FancyBorder>
+  // );
+  return <WelcomeDialog />;
 }
 
 export default App;
