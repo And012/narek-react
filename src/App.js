@@ -1,15 +1,7 @@
 import "./App.css";
-import { WelcomeDialog } from "./composition-vs-inheritence";
+import { FilterableProductTable } from "./thinking-in-react";
 
 function App() {
-  // return <FancyBorder children={<div>hello world</div>} />;
-  // return (
-  //   <FancyBorder>
-  //     <div>hello world</div>
-  //     <h1>this is doubled children</h1>
-  //   </FancyBorder>
-  // );
-  return <WelcomeDialog />;
+  return <FilterableProductTable />;
 }
-
 export default App;

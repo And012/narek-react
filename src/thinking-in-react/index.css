@@ -1,0 +1,10 @@
+.searchbar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.product-row-container {
+  display: flex;
+  gap: 10px;
+}
