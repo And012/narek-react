@@ -8,6 +8,11 @@ import React, {
 } from "react";
 
 import "./App.css";
+import UsingEffect from "./useEffect";
+import UsingDeffered from "./useDeferredValue";
+import UsingUseId from "./useId";
+import UsingRef from "./useRef";
+import Button from "./css-in-js";
 
 function fibonacci(n) {
   if (n <= 0) {
@@ -26,38 +31,43 @@ function fibonacci(n) {
 const Context = createContext(null);
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [secondCount, setSecondCount] = useState(0);
+  // const [count, setCount] = useState(0);
+  // const [secondCount, setSecondCount] = useState(0);
 
-  const handler = useCallback(() => {
-    setCount((prevCount) => ++prevCount);
-  }, []);
+  // const handler = useCallback(() => {
+  //   setCount((prevCount) => ++prevCount);
+  // }, []);
 
-  const fiboNum = useMemo(() => {
-    console.log("useMemo is working");
-    return fibonacci(count);
-  }, [count]);
+  // const fiboNum = useMemo(() => {
+  //   console.log("useMemo is working");
+  //   return fibonacci(count);
+  // }, [count]);
 
-  return (
-    <Context.Provider value={{ count, setter: setCount }}>
-      <div>
-        <button onClick={handler}>{count}</button>
-        <Child />
-        {/* lifting state up */}
-        <button
-          onClick={() => {
-            setSecondCount(secondCount + 1);
-          }}
-        >
-          second count - {secondCount}
-        </button>
-        <div>fibo num - {fiboNum}</div>
-        <button onClick={() => setSecondCount((prev) => ++prev)}>
-          2nd count
-        </button>
-      </div>
-    </Context.Provider>
-  );
+  // return (
+  // <Context.Provider value={{ count, setter: setCount }}>
+  //   <div>
+  //     <button onClick={handler}>{count}</button>
+  //     <Child />
+  //     {/* lifting state up */}
+  //     <button
+  //       onClick={() => {
+  //         setSecondCount(secondCount + 1);
+  //       }}
+  //     >
+  //       second count - {secondCount}
+  //     </button>
+  //     <div>fibo num - {fiboNum}</div>
+  //     <button onClick={() => setSecondCount((prev) => ++prev)}>
+  //       2nd count
+  //     </button>
+  //   </div>
+  // </Context.Provider>
+  // )
+
+  // return <UsingDeffered />;
+  // return <UsingUseId />;
+  // return <UsingRef />;
+  return <Button>click me</Button>;
 }
 
 const Child = React.memo(function Child() {
