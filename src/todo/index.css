@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid black;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+.control {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.delete {
+  width: 20;
+  height: 20px;
+  background-color: red;
+}
+
+.delete-container {
+  display: flex;
+  gap: 10px;
+  align-items: cetner;
+}
