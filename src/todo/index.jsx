@@ -3,16 +3,21 @@ import "./index.css";
 
 function Item({ todo: { completed, text }, setTodos, index }) {
   const [isEditing, setIsEditing] = useState(false);
+  const [editInputValue, setEditInputValue] = useState("");
 
   return (
     <div className="list-item">
       <div className="delete-container">
         <button
           className="delete"
-          onClick={() =>
+          onClick={() => {
             // delete todo
-            setTodos((todos) => todos.filter((_, i) => i !== index))
-          }
+            setTodos((todos) => {
+              const newTodos = todos.filter((_, i) => i !== index);
+              localStorage.setItem("todos", JSON.stringify(newTodos));
+              return newTodos;
+            });
+          }}
         >
           X
         </button>
@@ -23,13 +28,16 @@ function Item({ todo: { completed, text }, setTodos, index }) {
             setTodos(
               (
                 todos // mark it as completed
-              ) =>
-                todos.map((todo, i) => {
+              ) => {
+                const updatedTodos = todos.map((todo, i) => {
                   if (i === index) {
                     return { ...todo, completed: !completed };
                   }
                   return todo;
-                })
+                });
+                localStorage.setItem("todos", JSON.stringify(updatedTodos));
+                return updatedTodos;
+              }
             )
           }
         />
@@ -37,8 +45,19 @@ function Item({ todo: { completed, text }, setTodos, index }) {
           <input
             onKeyDown={(event) => {
               if (event.key === "Enter") {
+                setTodos((prevTodos) => {
+                  const newTodos = prevTodos.map((_, i) =>
+                    i === index ? { ..._, text: editInputValue } : _
+                  );
+                  localStorage.setItem("todos", JSON.stringify(newTodos));
+                  return newTodos;
+                });
                 setIsEditing(false);
               }
+            }}
+            value={editInputValue}
+            onChange={(e) => {
+              setEditInputValue(e.target.value);
             }}
           />
         ) : (
@@ -53,17 +72,19 @@ function Item({ todo: { completed, text }, setTodos, index }) {
 }
 
 export default function Todo() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem("todos")) ?? []
+  );
   const [inputValue, setInputValue] = useState("");
 
   const setter = useCallback(() => {
-    // add todo
-    setTodos((prevValue) => [
-      ...prevValue,
-      { completed: false, text: inputValue },
-    ]);
+    // add todo to local storage in order to have it after reload
+    const newTodos = [...todos, { completed: false, text: inputValue }];
+    localStorage.setItem("todos", JSON.stringify(newTodos));
+    // update the todo state
+    setTodos(newTodos);
     setInputValue("");
-  }, [setTodos, setInputValue, inputValue]);
+  }, [setTodos, setInputValue, inputValue, todos]);
 
   return (
     <div className="container">
