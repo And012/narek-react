@@ -5,6 +5,7 @@ import Counter from "./useReducer";
 import TodosApp from "./useSyncExternalStore";
 
 function App() {
+  console.log("it is working");
   return (
     <Profiler
       id="first-profiler"
