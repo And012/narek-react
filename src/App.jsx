@@ -3,6 +3,7 @@ import "./App.css";
 import Todo from "./todo";
 import Counter from "./useReducer";
 import TodosApp from "./useSyncExternalStore";
+// import ArtistPage from "./suspense";
 
 function App() {
   console.log("it is working");
@@ -16,6 +17,7 @@ function App() {
       <Todo />
       <Counter />
       <TodosApp />
+      {/* <ArtistPage /> */}
     </Profiler>
   );
 }
