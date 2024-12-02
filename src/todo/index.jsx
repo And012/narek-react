@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
 import "./index.css";
 
 function Item({ todo: { completed, text }, setTodos, index }) {
@@ -21,8 +22,7 @@ function Item({ todo: { completed, text }, setTodos, index }) {
         >
           X
         </button>
-        <input
-          type="checkbox"
+        <Checkbox
           checked={completed}
           onChange={() =>
             setTodos(
